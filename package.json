@@ -1,0 +1,20 @@
+{
+  "name": "personas-api-devops",
+  "version": "1.0.0",
+  "description": "API backend simple para guardar personas en memoria.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "api",
+    "devops",
+    "node"
+  ],
+  "author": "",
+  "license": "MIT"
+}
