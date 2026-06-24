@@ -29,6 +29,7 @@ test('POST /personas agrega una persona', async () => {
         rut: '11111111-1',
         fechaNacimiento: '2000-05-10',
         ciudad: 'La Serena',
+        gustos: ['leer', 'viajar'],
       }),
     });
 
@@ -40,6 +41,7 @@ test('POST /personas agrega una persona', async () => {
       rut: '11111111-1',
       fechaNacimiento: '2000-05-10',
       ciudad: 'La Serena',
+      gustos: ['leer', 'viajar'],
     });
   } finally {
     await server.close();
@@ -56,12 +58,14 @@ test('GET /personas obtiene todas las personas', async () => {
       rut: '11111111-1',
       fechaNacimiento: '2000-05-10',
       ciudad: 'La Serena',
+      gustos: ['leer', 'viajar'],
     };
     const personaDos = {
       nombre: 'Maria Soto',
       rut: '22222222-2',
       fechaNacimiento: '1998-08-20',
       ciudad: 'Santiago',
+      gustos: ['cocinar', 'bailar'],
     };
 
     await fetch(`${server.baseUrl}/personas`, {
@@ -95,12 +99,14 @@ test('DELETE /personas/:rut elimina una persona por RUT', async () => {
       rut: '11111111-1',
       fechaNacimiento: '2000-05-10',
       ciudad: 'La Serena',
+      gustos: ['leer', 'viajar'],
     };
     const personaDos = {
       nombre: 'Maria Soto',
       rut: '22222222-2',
       fechaNacimiento: '1998-08-20',
       ciudad: 'Santiago',
+      gustos: ['cocinar', 'bailar'],
     };
 
     await fetch(`${server.baseUrl}/personas`, {
@@ -142,6 +148,7 @@ test('POST /personas rechaza datos incompletos', async () => {
         nombre: 'Persona sin ciudad',
         rut: '33333333-3',
         fechaNacimiento: '2001-01-01',
+        ciudad: 'Santiago',
       }),
     });
 
