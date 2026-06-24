@@ -39,7 +39,11 @@ function readJsonBody(req) {
 
 function validarPersona(persona) {
   const camposRequeridos = ['nombre', 'rut', 'fechaNacimiento', 'ciudad'];
-  return camposRequeridos.every((campo) => typeof persona[campo] === 'string' && persona[campo].trim() !== '');
+  const stringsValidos = camposRequeridos.every((campo) => typeof persona[campo] === 'string' && persona[campo].trim() !== '');
+
+  const gustosValidos = Array.isArray(persona.gustos) && persona.gustos.every((g) => typeof g === 'string');
+
+  return stringsValidos && gustosValidos;
 }
 
 function resetPersonas() {
@@ -66,7 +70,7 @@ function createApp() {
 
         if (!validarPersona(persona)) {
           sendJson(res, 400, {
-            error: 'Los campos nombre, rut, fechaNacimiento y ciudad son obligatorios.',
+            error: 'Los campos nombre, rut, fechaNacimiento, ciudad y gustos son obligatorios.',
           });
           return;
         }
@@ -82,6 +86,7 @@ function createApp() {
           rut: persona.rut,
           fechaNacimiento: persona.fechaNacimiento,
           ciudad: persona.ciudad,
+          gustos: persona.gustos,
         };
 
         personas.push(nuevaPersona);
