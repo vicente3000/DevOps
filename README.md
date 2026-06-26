@@ -24,6 +24,46 @@ http://localhost:3000
 npm test
 ```
 
+## Ejecutar con Docker
+
+Crear el archivo de variables local:
+
+```bash
+cp example.env .env
+```
+
+Levantar la aplicacion, PostgreSQL y pgAdmin:
+
+```bash
+docker compose up --build
+```
+
+Servicios disponibles:
+
+```text
+API: http://localhost:3000
+pgAdmin: http://localhost:8080
+PostgreSQL: localhost:5432
+```
+
+Credenciales de pgAdmin:
+
+```text
+Correo: admin@admin.com
+Contrasena: admin123
+```
+
+Para registrar PostgreSQL en pgAdmin:
+
+```text
+Host: db
+Port: 5432
+Username: postgres
+Password: postgres
+Database: personas_db
+```
+
+Si el proyecto usa Prisma en `src/prisma/schema.prisma`, Docker genera el cliente durante el build y ejecuta las migraciones al iniciar el contenedor.
 ## Rutas
 
 ### Agregar persona
@@ -71,3 +111,4 @@ curl -X DELETE http://localhost:3000/personas/11111111-1
 
 curl http://localhost:3000/personas
 ```
+
