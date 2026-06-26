@@ -1,4 +1,4 @@
-services:
+﻿services:
   app:
     build:
       context: .
@@ -11,7 +11,8 @@ services:
     environment:
       PORT: 3000
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: unless-stopped
 
   db:
@@ -25,6 +26,11 @@ services:
       - "${DB_PORT}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     mem_limit: 512m
     cpus: 0.50
     restart: unless-stopped
@@ -38,10 +44,12 @@ services:
     ports:
       - "${PGADMIN_PORT}:80"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     mem_limit: 256m
     cpus: 0.25
     restart: unless-stopped
 
 volumes:
   postgres_data:
+
