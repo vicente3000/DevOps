@@ -17,7 +17,7 @@ async function startTestServer() {
 }
 
 test('POST /personas agrega una persona', async () => {
-  resetPersonas();
+  await resetPersonas(); 
   const server = await startTestServer();
 
   try {
@@ -49,7 +49,7 @@ test('POST /personas agrega una persona', async () => {
 });
 
 test('GET /personas obtiene todas las personas', async () => {
-  resetPersonas();
+  await resetPersonas();
   const server = await startTestServer();
 
   try {
@@ -90,7 +90,7 @@ test('GET /personas obtiene todas las personas', async () => {
 });
 
 test('DELETE /personas/:rut elimina una persona por RUT', async () => {
-  resetPersonas();
+  await resetPersonas();
   const server = await startTestServer();
 
   try {
@@ -137,7 +137,7 @@ test('DELETE /personas/:rut elimina una persona por RUT', async () => {
 });
 
 test('POST /personas rechaza datos incompletos', async () => {
-  resetPersonas();
+  await resetPersonas();
   const server = await startTestServer();
 
   try {
@@ -148,7 +148,6 @@ test('POST /personas rechaza datos incompletos', async () => {
         nombre: 'Persona sin ciudad',
         rut: '33333333-3',
         fechaNacimiento: '2001-01-01',
-        ciudad: 'Santiago',
       }),
     });
 

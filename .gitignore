@@ -1,4 +1,40 @@
+# Dependencies
 node_modules/
+
+# Environment files
 .env
-coverage/
+.env.*
+!example.env
+
+# Logs
+logs/
+*.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Test and coverage output
+coverage/
+.nyc_output/
+
+# Build output
+build/
+dist/
+.tmp/
+tmp/
+
+# Runtime files
+*.pid
+*.seed
+*.pid.lock
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Docker local overrides
+compose.override.yaml
+docker-compose.override.yaml
