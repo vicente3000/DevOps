@@ -1,0 +1,24 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Persona {
+  id              Int      @id @default(autoincrement())
+  nombre          String
+  rut             String   @unique
+  fechaNacimiento DateTime
+  ciudad          String
+  gustos          Gusto[] 
+}
+
+model Gusto {
+  id        Int     @id @default(autoincrement())
+  nombre    String
+  personaId Int
+  persona   Persona @relation(fields: [personaId], references: [id], onDelete: Cascade)
+}
